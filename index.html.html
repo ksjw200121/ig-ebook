@@ -1,0 +1,683 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IG 合規經營地雷指南｜我是金孫</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #111111;
+    --bg2: #181818;
+    --yellow: #FFD700;
+    --red: #E8002D;
+    --white: #F5F5F5;
+    --gray: #888;
+    --gray2: #333;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--white);
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── TOP BAR ── */
+  .topbar {
+    background: var(--red);
+    text-align: center;
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    color: #fff;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    padding: 80px 24px 60px;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 80% 50%, rgba(232,0,45,0.12) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(255,215,0,0.06) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  /* vertical accent bar */
+  .hero::after {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: var(--yellow);
+  }
+
+  .hero-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+    opacity: 0;
+    animation: fadeUp 0.9s ease forwards 0.1s;
+  }
+
+  .brand-tag {
+    display: inline-block;
+    border: 1px solid var(--gray2);
+    color: var(--gray);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    padding: 4px 12px;
+    margin-bottom: 28px;
+    text-transform: uppercase;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 10vw, 72px);
+    font-weight: 900;
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    margin-bottom: 8px;
+  }
+
+  .hero h1 .line1 { color: var(--yellow); display: block; }
+  .hero h1 .line2 { color: var(--white); display: block; }
+  .hero h1 .line3 { color: var(--red);   display: block; }
+
+  .hero-sub {
+    margin: 28px 0 20px;
+    font-size: 17px;
+    color: #aaa;
+    border-left: 3px solid var(--yellow);
+    padding-left: 14px;
+    line-height: 1.6;
+  }
+
+  .hero-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 36px;
+  }
+
+  .tag {
+    background: var(--gray2);
+    color: var(--gray);
+    font-size: 12px;
+    padding: 4px 12px;
+    border-radius: 2px;
+    letter-spacing: 0.05em;
+  }
+
+  /* price display */
+  .price-block {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    margin-bottom: 32px;
+  }
+
+  .price-orig {
+    font-size: 15px;
+    color: var(--gray);
+    text-decoration: line-through;
+  }
+
+  .price-now {
+    font-size: 42px;
+    font-weight: 900;
+    color: var(--yellow);
+  }
+
+  .price-label {
+    font-size: 14px;
+    color: #aaa;
+  }
+
+  .cta-btn {
+    display: inline-block;
+    background: var(--yellow);
+    color: #111;
+    font-size: 18px;
+    font-weight: 900;
+    padding: 18px 48px;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .cta-btn::after {
+    content: ' →';
+    transition: transform 0.2s;
+    display: inline-block;
+  }
+
+  .cta-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(255,215,0,0.3);
+  }
+
+  .cta-note {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--gray);
+  }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gray2), transparent);
+    margin: 0 24px;
+  }
+
+  /* ── SECTION BASE ── */
+  .section {
+    padding: 72px 24px;
+    max-width: 680px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    color: var(--red);
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    font-weight: 700;
+  }
+
+  .section-title {
+    font-size: clamp(24px, 5vw, 36px);
+    font-weight: 900;
+    margin-bottom: 28px;
+    line-height: 1.25;
+  }
+
+  /* ── WHO IS THIS FOR ── */
+  .audience-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .audience-card {
+    background: var(--bg2);
+    border-left: 3px solid var(--yellow);
+    padding: 16px 18px;
+    font-size: 15px;
+    font-weight: 700;
+    opacity: 0;
+    animation: fadeUp 0.6s ease forwards;
+  }
+
+  .audience-card:nth-child(1) { animation-delay: 0.1s; }
+  .audience-card:nth-child(2) { animation-delay: 0.2s; }
+  .audience-card:nth-child(3) { animation-delay: 0.3s; }
+  .audience-card:nth-child(4) { animation-delay: 0.4s; }
+
+  .audience-card span {
+    display: block;
+    font-size: 12px;
+    color: var(--gray);
+    font-weight: 400;
+    margin-top: 4px;
+  }
+
+  /* ── PAIN POINTS ── */
+  .pain-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 12px;
+  }
+
+  .pain-list li {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 16px;
+    background: var(--bg2);
+    border-top: 1px solid var(--gray2);
+  }
+
+  .pain-list li::before {
+    content: '!';
+    flex-shrink: 0;
+    width: 24px;
+    height: 24px;
+    background: var(--red);
+    color: #fff;
+    font-weight: 900;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+
+  /* ── WHAT'S INSIDE ── */
+  .toc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin-top: 8px;
+  }
+
+  .toc-list li {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    border-bottom: 1px solid var(--gray2);
+    font-size: 15px;
+  }
+
+  .toc-num {
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--yellow);
+    background: rgba(255,215,0,0.1);
+    padding: 3px 8px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+  }
+
+  .toc-sub {
+    display: block;
+    font-size: 12px;
+    color: var(--gray);
+    margin-top: 3px;
+    line-height: 1.5;
+  }
+
+  /* ── COMPARE PREVIEW ── */
+  .compare-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 8px;
+    margin-bottom: 2px;
+  }
+
+  .compare-bad, .compare-good {
+    padding: 14px 16px;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+
+  .compare-bad  { background: rgba(232,0,45,0.15); border-top: 2px solid var(--red); }
+  .compare-good { background: rgba(40,200,100,0.1); border-top: 2px solid #28c864; }
+
+  .compare-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+    margin-top: 28px;
+  }
+
+  .compare-header div {
+    padding: 8px 16px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+  }
+
+  .compare-header .ch-bad  { background: rgba(232,0,45,0.3); color: var(--red); }
+  .compare-header .ch-good { background: rgba(40,200,100,0.2); color: #28c864; }
+
+  /* ── PENALTY ── */
+  .penalty-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 8px;
+  }
+
+  .penalty-card {
+    background: var(--bg2);
+    padding: 20px;
+    border-left: 3px solid var(--red);
+  }
+
+  .penalty-cat {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 6px;
+  }
+
+  .penalty-amt {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--red);
+  }
+
+  /* ── BOTTOM CTA ── */
+  .bottom-cta {
+    background: var(--bg2);
+    padding: 72px 24px;
+    text-align: center;
+    border-top: 1px solid var(--gray2);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .bottom-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 50% 100%, rgba(255,215,0,0.05) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .bottom-cta-inner {
+    max-width: 520px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .bottom-cta h2 {
+    font-size: clamp(28px, 6vw, 44px);
+    font-weight: 900;
+    line-height: 1.2;
+    margin-bottom: 16px;
+  }
+
+  .bottom-cta h2 em {
+    font-style: normal;
+    color: var(--yellow);
+  }
+
+  .bottom-cta p {
+    color: #888;
+    font-size: 15px;
+    margin-bottom: 36px;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    padding: 28px 24px;
+    text-align: center;
+    font-size: 12px;
+    color: #555;
+    border-top: 1px solid var(--gray2);
+  }
+
+  footer a { color: #666; text-decoration: none; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* Intersection observer fade */
+  .reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 520px) {
+    .audience-grid { grid-template-columns: 1fr; }
+    .compare-row, .compare-header { grid-template-columns: 1fr; }
+    .compare-header { display: flex; }
+    .compare-header .ch-good { display: none; }
+    .cta-btn { width: 100%; text-align: center; padding: 18px 24px; }
+    .price-now { font-size: 36px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">早鳥優惠進行中 — 保險・美業・直銷・微商 適用</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="brand-tag">我是金孫 出品</div>
+
+    <h1>
+      <span class="line1">IG 發文</span>
+      <span class="line2">合規經營</span>
+      <span class="line3">地雷指南</span>
+    </h1>
+
+    <p class="hero-sub">
+      你的每一則貼文，都可能是一份法律文件<br>
+      36 組違規 vs 合規對照表・真實罰款金額・逐條白話法規
+    </p>
+
+    <div class="hero-tags">
+      <span class="tag">保險業務</span>
+      <span class="tag">美業</span>
+      <span class="tag">直銷</span>
+      <span class="tag">微商</span>
+      <span class="tag">44 頁 PDF</span>
+    </div>
+
+    <div class="price-block">
+      <span class="price-orig">NT$599</span>
+      <span class="price-now">NT$499</span>
+      <span class="price-label">早鳥價</span>
+    </div>
+
+    <!-- ↓ 把這裡換成你的藍新快速收款連結 -->
+    <a href="https://core.newebpay.com/EPG/YOUR_LINK_HERE" class="cta-btn" target="_blank">
+      立即購買
+    </a>
+    <p class="cta-note">信用卡・Apple Pay・Google Pay・ATM 均可付款</p>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- WHO IS THIS FOR -->
+<div class="section reveal">
+  <p class="section-label">這本書寫給誰</p>
+  <h2 class="section-title">只要你在 IG 上發商業內容<br>這本書都跟你有關</h2>
+  <div class="audience-grid">
+    <div class="audience-card">
+      保險業務員
+      <span>避開停招一整年的風險</span>
+    </div>
+    <div class="audience-card">
+      美業老闆娘
+      <span>化妝品法・醫療法地雷</span>
+    </div>
+    <div class="audience-card">
+      直銷夥伴
+      <span>招募文案的合規邊界</span>
+    </div>
+    <div class="audience-card">
+      微商・保健食品
+      <span>食安法廣告禁區</span>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- PAIN POINTS -->
+<div class="section reveal">
+  <p class="section-label">你可能不知道</p>
+  <h2 class="section-title">這些行為，<br>每天都在發生</h2>
+  <ul class="pain-list">
+    <li>在 IG 限動發「三天消除細紋」的 before/after 對比圖</li>
+    <li>保險業務員發了一支 Reels 介紹儲蓄險的預定利率</li>
+    <li>直銷夥伴在貼文寫「被動收入讓我不用再上班」</li>
+    <li>微商轉發顧客私訊「吃了瘦 6 公斤」的截圖當宣傳</li>
+    <li>美容師在 IG 發清粉刺見血的過程影片</li>
+  </ul>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- WHAT'S INSIDE -->
+<div class="section reveal">
+  <p class="section-label">書中內容</p>
+  <h2 class="section-title">五章・44 頁<br>從法條到實戰</h2>
+  <ul class="toc-list">
+    <li>
+      <span class="toc-num">CH.01</span>
+      <div>
+        為什麼你的 IG 發文可能違法
+        <span class="toc-sub">社群媒體就是廣告媒體・哪些單位在管你・2 個真實案例</span>
+      </div>
+    </li>
+    <li>
+      <span class="toc-num">CH.02</span>
+      <div>
+        美業篇：化妝品法與醫療法
+        <span class="toc-sub">生理功能 vs 療效界定・個資法地雷・12 組對照・3 個案例・罰款速查</span>
+      </div>
+    </li>
+    <li>
+      <span class="toc-num">CH.03</span>
+      <div>
+        直銷保健品篇：食安法
+        <span class="toc-sub">七天鑑賞期・稅籍登記門檻・薦證廣告・12 組對照・3 個案例</span>
+      </div>
+    </li>
+    <li>
+      <span class="toc-num">CH.04</span>
+      <div>
+        保險業務篇：業務員管理規則
+        <span class="toc-sub">公會紀錄終身跟隨・停招後的長期影響・12 組對照・3 個案例</span>
+      </div>
+    </li>
+    <li>
+      <span class="toc-num">CH.05</span>
+      <div>
+        通用合規原則
+        <span class="toc-sub">發文前三問・四大行業免責聲明範本・高風險詞彙速查・6 種安全策略</span>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- COMPARE PREVIEW -->
+<div class="section reveal">
+  <p class="section-label">書中內容預覽</p>
+  <h2 class="section-title">改一個字<br>可能差 60 萬</h2>
+  <div class="compare-header">
+    <div class="ch-bad">X 違規說法</div>
+    <div class="ch-good">O 合規說法</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-bad">三天消除細紋，親眼可見！</div>
+    <div class="compare-good">使用一段時間後，感覺肌膚更有光澤（個人感受，因人而異）</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-bad">七天瘦 5 公斤，保證有效</div>
+    <div class="compare-good">許多人配合飲食調整後反映體態管理更輕鬆（個人結果不代表普遍成效）</div>
+  </div>
+  <div class="compare-row">
+    <div class="compare-bad">買這張儲蓄險，20 年後穩領 200 萬</div>
+    <div class="compare-good">這張儲蓄險依規劃，預定滿期金約為 XX 元，實際依契約條款為準</div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- PENALTIES -->
+<div class="section reveal">
+  <p class="section-label">真實罰款金額</p>
+  <h2 class="section-title">不是嚇你<br>這些都是真的</h2>
+  <div class="penalty-grid">
+    <div class="penalty-card">
+      <div class="penalty-cat">化粧品廣告宣稱醫療效能</div>
+      <div class="penalty-amt">NT$ 60 萬 — 500 萬</div>
+    </div>
+    <div class="penalty-card">
+      <div class="penalty-cat">保健食品廣告誇大不實</div>
+      <div class="penalty-amt">NT$ 4 萬 — 400 萬</div>
+    </div>
+    <div class="penalty-card">
+      <div class="penalty-cat">直銷不實招募或隱匿身分</div>
+      <div class="penalty-amt">NT$ 10 萬 — 500 萬</div>
+    </div>
+    <div class="penalty-card">
+      <div class="penalty-cat">保險業務員違規文宣</div>
+      <div class="penalty-amt">停止招攬 1 年以下・公會紀錄終身</div>
+    </div>
+  </div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- BOTTOM CTA -->
+<div class="bottom-cta reveal">
+  <div class="bottom-cta-inner">
+    <h2>一頓飯的錢<br>換<em>一年不被罰的安心</em></h2>
+    <p>44 頁・36 組對照表・真實案例・可直接複製的免責聲明範本</p>
+
+    <div class="price-block" style="justify-content:center; margin-bottom:28px;">
+      <span class="price-orig">NT$599</span>
+      <span class="price-now">NT$499</span>
+      <span class="price-label">早鳥價</span>
+    </div>
+
+    <!-- ↓ 把這裡換成你的藍新快速收款連結 -->
+    <a href="https://core.newebpay.com/EPG/YOUR_LINK_HERE" class="cta-btn" target="_blank">
+      立即購買
+    </a>
+    <p style="margin-top:14px; font-size:13px; color:#666;">
+      信用卡・Apple Pay・Google Pay・ATM 均可<br>
+      付款後請截圖私訊 <strong style="color:#aaa;">@fang.0721</strong> 取得電子書
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 我是金孫・IG 合規經營地雷指南</p>
+  <p style="margin-top:6px;">本頁面內容僅供參考，不構成法律建議・<a href="#">版權聲明</a></p>
+</footer>
+
+<script>
+  // Intersection Observer for reveal animations
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
