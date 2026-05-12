@@ -731,15 +731,7 @@ before after圖怎麼發才不違規
 </footer>
 
 <script>
-  // 購買人數：基準 157 人（2026/4/14），每天 +37
-  (function(){
-    var base=157, perDay=13;
-    var start=new Date('2026-04-14');
-    var days=Math.floor((new Date()-start)/86400000);
-    var n=base+Math.max(0,days)*perDay;
-    var el=document.getElementById('buyer-num');
-    if(el) el.textContent=n.toLocaleString();
-  })();
+
 
   // Intersection Observer for reveal animations
   const reveals = document.querySelectorAll('.reveal');
